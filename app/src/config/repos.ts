@@ -39,9 +39,6 @@ const renderProvider = (provider: number) => {
     ${window.siyuan.languages.syncOfficialProviderIntro}
 </div>`;
     }
-    if (!isPaidUser()) {
-        return `<div class="b3-label b3-label--inner">${window.siyuan.languages["_kernel"][214]}</div>`;
-    }
     if (provider === 2) {
         return `<div class="b3-label b3-label--inner">
     ${window.siyuan.languages.syncThirdPartyProviderS3Intro}
@@ -242,16 +239,8 @@ const bindProviderEvent = () => {
     }
 
     loadingElement.classList.add("fn__none");
-    let nextElement = reposDataElement.nextElementSibling;
-    while (nextElement) {
-        if (isPaidUser()) {
-            nextElement.classList.remove("fn__none");
-        } else {
-            nextElement.classList.add("fn__none");
-        }
-        nextElement = nextElement.nextElementSibling;
-    }
-    reposDataElement.classList.add("fn__none");
+    reposDataElement.classList.remove("fn__none");
+
     const providerPanelElement = repos.element.querySelector("#syncProviderPanel");
     providerPanelElement.querySelectorAll(".b3-text-field, .b3-select").forEach(item => {
         item.addEventListener("blur", () => {

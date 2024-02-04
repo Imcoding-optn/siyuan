@@ -167,10 +167,6 @@ export const syncGuide = (app?: App) => {
         }
         return;
     }
-    if (0 !== window.siyuan.config.sync.provider && !isPaidUser() && app) {
-        showMessage(window.siyuan.languages["_kernel"][214]);
-        return;
-    }
     /// #endif
     if (!window.siyuan.config.repo.key) {
         setKey(true);
@@ -184,10 +180,12 @@ export const syncGuide = (app?: App) => {
 };
 
 const syncNow = () => {
-    if (window.siyuan.config.sync.mode !== 3) {
-        fetchPost("/api/sync/performSync", {});
-        return;
-    }
+    // window.siyuan.config.sync.mode 设置为 1时，即：没修改后30秒同步一次
+    // 但当手动点击顶部工具栏的同步按钮时，这里会拦截？不明白为什么这么设置
+    // if (window.siyuan.config.sync.mode !== 3) {
+    //     fetchPost("/api/sync/performSync", {});
+    //     return;
+    // }
     const manualDialog = new Dialog({
         title: window.siyuan.languages.chooseSyncDirection,
         content: `<div class="b3-dialog__content">

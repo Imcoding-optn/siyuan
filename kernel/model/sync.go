@@ -250,10 +250,6 @@ func checkSync(boot, exit, byHand bool) bool {
 		if !IsSubscriber() {
 			return false
 		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			return false
-		}
 	}
 
 	if isSyncing.Load() {
