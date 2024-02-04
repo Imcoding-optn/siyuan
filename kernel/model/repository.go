@@ -677,11 +677,6 @@ func DownloadCloudSnapshot(tag, id string) (err error) {
 			util.PushErrMsg(Conf.Language(29), 5000)
 			return
 		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			util.PushErrMsg(Conf.Language(214), 5000)
-			return
-		}
 	}
 
 	defer util.PushClearProgress()
@@ -717,11 +712,6 @@ func UploadCloudSnapshot(tag, id string) (err error) {
 	case conf.ProviderSiYuan:
 		if !IsSubscriber() {
 			util.PushErrMsg(Conf.Language(29), 5000)
-			return
-		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			util.PushErrMsg(Conf.Language(214), 5000)
 			return
 		}
 	}
@@ -765,11 +755,6 @@ func RemoveCloudRepoTag(tag string) (err error) {
 			util.PushErrMsg(Conf.Language(29), 5000)
 			return
 		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			util.PushErrMsg(Conf.Language(214), 5000)
-			return
-		}
 	}
 
 	err = repo.RemoveCloudRepoTag(tag)
@@ -795,11 +780,6 @@ func GetCloudRepoTagSnapshots() (ret []*dejavu.Log, err error) {
 	case conf.ProviderSiYuan:
 		if !IsSubscriber() {
 			util.PushErrMsg(Conf.Language(29), 5000)
-			return
-		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			util.PushErrMsg(Conf.Language(214), 5000)
 			return
 		}
 	}
@@ -831,11 +811,6 @@ func GetCloudRepoSnapshots(page int) (ret []*dejavu.Log, pageCount, totalCount i
 	case conf.ProviderSiYuan:
 		if !IsSubscriber() {
 			util.PushErrMsg(Conf.Language(29), 5000)
-			return
-		}
-	case conf.ProviderWebDAV, conf.ProviderS3:
-		if !IsPaidUser() {
-			util.PushErrMsg(Conf.Language(214), 5000)
 			return
 		}
 	}
